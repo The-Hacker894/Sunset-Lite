@@ -6,4 +6,4 @@ Lightweight version of Sunset
 [Sunset Lite Invite](https://discordapp.com/oauth2/authorize?client_id=391606660214292482&scope=bot&permissions=2146958591)
 [Sunset Invite](https://discordapp.com/oauth2/authorize?client_id=371097223942897665&scope=bot&permissions=2146958591)
 
-## Sunset Website Coming Soon!!!
+[Sunset Lite Website](https://hackerhubsite.weebly.com/sunset_lite.html)
