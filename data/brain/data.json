@@ -1,0 +1,13 @@
+{
+    "newversion": "1.0",
+    "token": "",
+    "description": "Lightweight version of Sunset",
+    "library": "Discord.js",
+    "language":"Node.js",
+    "prefix": "$",
+    "bot_client_id":"371097223942897665",
+    "bot_permissions":"2146958591",
+    "embedcolor":"#FFA500",
+    "lock":"false",
+    "ownerid":"270375857384587264"
+}
