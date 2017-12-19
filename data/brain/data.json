@@ -1,6 +1,7 @@
 {
     "newversion": "1.2",
     "token": "",
+    "dbltoken": "",
     "description": "Lightweight version of Sunset",
     "library": "Discord.js",
     "language":"Node.js",
