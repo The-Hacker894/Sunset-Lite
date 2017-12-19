@@ -52,7 +52,7 @@ client.on("message", (message) => {
     })
   })
       client.on("ready", () => {
-        console.log('Logged on as ' + client.user.id)
+        console.log('Logged on as ' + client.user.tag)
         console.log('[Game] ' + game.game)
         console.log('[Announcement] ' + announcement.announce)
         client.user.setGame(game.game + ' | ' + data.prefix + 'help' )
