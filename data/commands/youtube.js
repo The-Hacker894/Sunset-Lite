@@ -22,15 +22,17 @@ module.exports.run = (client, message, args, data, game, announcement) => {
 
     var youtubegoogleData = $('.r').first().find('a').first().attr('href');
     youtubegoogleData = querystring.parse(youtubegoogleData.replace('/url?', ''));
-
-    var youtuberesultembed = new Discord.RichEmbed()
-      .setColor(data.embedcolor)
-     .setTitle('Here\'s what I found for')
-    .setDescription(ytsimplegooglesearch + '\n \n ' + youtubegoogleData.q)
-      .setThumbnail('https://i.imgur.com/mr5RWW8.jpg')
-      .setFooter('Youtube Search Result at ' + embedfooter)
-    message.channel.send({embed: youtuberesultembed}).catch(console.error);
-    console.log(message.guild.name + " | " + message.author.username + ' | ' + ytsearch + ' | ' + `${youtubegoogleData.q}`)
+    var nsfwterms = ['porn', 'hentai', 'pron', 'ass', 'fuck', 'piss', 'penis', 'vagina']    
+    var ytcheck = youtubegoogleData.q
+      if(message.channel.nsfw) {
+        message.channel.send('Here\'s what I found for \n*'  + ytsimplegooglesearch + '*\n' + youtubegoogleData.q)
+      } else {
+        if(nsfwterms.some(terms => ytcheck.includes(terms))) {
+          message.channel.send('```' + boxen('NSFW Terms used in Non-NSFW Channel', {padding: 1}) + '```')
+        } else {
+          message.channel.send('Here\'s what I found for \n*'  + ytsimplegooglesearch + '*\n' + youtubegoogleData.q)          
+        }
+      }
 });
 }
 module.exports.help = {

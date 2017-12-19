@@ -11,7 +11,7 @@ module.exports.run = (client, message, args, data, announcement) => {
     .setTitle('Commands')
     .addField('**Info**', '`help` `info` `avatar` `profile` `serverinfo` `membercount` `invite` `settings` `uptime` `usage`')
     .addField('**Moderation**', '`ban` `kick` `unban` `purge` `mkchannel` `mkvoicechannel` `channelsettings`')
-    .addField('**Entertainment**', '`2ball` `8ball` `cowsay` `cowthink` `dictionary` `emojify` `figlet` `fliptext` `google` `reverse` `roll` `rps` `say` `timer` `urban` `vote` `youtube` `randomcolor`')
+    .addField('**Entertainment**', '`cleverbot` `2ball` `8ball` `cowsay` `cowthink` `dictionary` `emojify` `figlet` `fliptext` `google` `reverse` `roll` `rps` `say` `timer` `urban` `vote` `youtube` `randomcolor`')
     .addField('**Other**', '`announcement`')
     .addField('**Owner Only**', '`flush`')
 message.channel.send({embed: helpembed})

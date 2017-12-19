@@ -11,6 +11,7 @@ module.exports.run = (client, message, args, data, game, announcement) => {
   } 
 var emsg = message.content.split(' ').slice(1).join(' ')
   if(emsg.length < 1) return message.channel.send('```' + boxen('You must provide something to emojify', {padding: 1}) +'```')
+  if(translate.translate(emsg) === emsg) return message.channel.send('```' + boxen('Cannot emojify ' + emsg, {padding: 1}) + '```')
   message.channel.send(translate.translate(emsg));
 }
 module.exports.help = {

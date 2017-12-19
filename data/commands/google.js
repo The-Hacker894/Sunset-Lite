@@ -20,8 +20,17 @@ return snekfetch.get(searchUrl).then((result) => {
   var $ = cheerio.load(result.text);
   var googleData = $('.r').first().find('a').first().attr('href');
   googleData = querystring.parse(googleData.replace('/url?', ''));
-  message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
-  console.log(message.guild.name + " | " + message.author.username + ' | ' + googlesearch + ' | ' + `${googleData.q}`)
+  var checkGoogleData = googleData.q
+  var nsfwterms = ['porn', 'hentai', 'pron', 'ass', 'fuck', 'piss', 'penis', 'vagina']
+  if(message.channel.nsfw){
+    message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
+    }else{
+      if(nsfwterms.some(terms => checkGoogleData.includes(terms))) {
+        message.channel.send('```' + boxen('NSFW term used in non NSFW channel', {padding: 1}))
+      } else {
+        message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
+      }
+    }
     message.channel.stopTyping()
 });
 }
