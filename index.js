@@ -8,6 +8,8 @@ const fs = require("fs");
 const prefix = data.prefix
 const request = require("request")
 const pusage = require('pidusage')
+const requestpn = require("request-promise-native")
+const DBLToken = data.dbltoken
 
 client.on("message", (message) => {
 
@@ -35,7 +37,6 @@ client.on("message", (message) => {
         console.log(attachment.url);
       })
     })
-    
     client.commands = new Discord.Collection();
   fs.readdir("./data/commands", (err, files) => {
     if(err) console.error(err)
@@ -57,8 +58,47 @@ client.on("message", (message) => {
         console.log('[Announcement] ' + announcement.announce)
         client.user.setGame(game.game + ' | ' + data.prefix + 'help' )
         pusage.unmonitor(process.pid)
+        requestpn.post({
+          uri: `https://discordbots.org/api/bots/${client.user.id}/stats`,
+          headers: {
+              Authorization: DBLToken,
+          },
+          json: true,
+          body: {
+              server_count: client.guilds.size,
+          },
+      });
+      });
+      client.on("guildDelete", guild => {
+        console.log('Removed from 1 server | ' + guild)
+          requestpn.post({
+                uri: `https://discordbots.org/api/bots/${client.user.id}/stats`,
+                headers: {
+                    Authorization: DBLToken, // Insert token here
+                },
+                json: true,
+                body: {
+                    server_count: client.guilds.size,
+                },
+           }); 
     
       });
+      client.on("guildCreate", guild => {
+        guild.owner.send({embed: botjoinembed}).catch(console.error);
+            client.user.setGame(game.game + ' | ' + data.prefix + 'help' )
+           requestpn.post({
+                  uri: `https://discordbots.org/api/bots/${client.user.id}/stats`,
+                  headers: {
+                      Authorization: DBLToken, // Insert token here
+                  },
+                  json: true,
+                  body: {
+                      server_count: client.guilds.size,
+                  },
+              });
+    
+      });
+
       
     
     client.login(data.token)

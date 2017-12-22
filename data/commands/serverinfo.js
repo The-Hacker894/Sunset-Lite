@@ -30,7 +30,7 @@ var serverinfembed = new Discord.RichEmbed()
 .addField('Idle Member Count', '`' + idlemembers + '` / ' + '`' + members + '` [`' + Math.round(idlemembervsmember *100) + '%`]' ,true)
 .addField('Do Not Disturb Member Count', '`' + dndmembers + '` / ' + '`' + members + '` [`' + Math.round(dndmembervsmember *100) + '%`]',true )
 .addField('Offline Member Count', '`' + offlinemembers + '` / `' + members + '` [`' + Math.round(offlinemembervsmember *100) + '%`]', true)
-.setFooter('This server has ' + members + ' / ' + total + ' [' + Math.round(10000*membervstotalmember)/10000 + '%] of ' + client.user.username + '\'s users!')
+.setFooter('This server has ' + members + ' / ' + total + ' [' + Math.round(10000*membervstotalmember) + '%] of ' + client.user.username + '\'s users!')
 .setThumbnail(message.guild.iconURL)
 // thanks to Felix for this
 

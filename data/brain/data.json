@@ -1,8 +1,8 @@
 {
-    "newversion": "1.2",
+    "newversion": "2.0.2",
     "token": "",
-    "dbltoken": "",
     "description": "Lightweight version of Sunset",
+    "dbltoken": "",
     "library": "Discord.js",
     "language":"Node.js",
     "prefix": "$",
@@ -10,5 +10,6 @@
     "bot_permissions":"2146958591",
     "embedcolor":"#FFA500",
     "lock":"false",
+    "nsfwterms": ["porn", "hentai", "pron", "ass", "fuck", "piss", "penis", "vagina", "dick", "nude", "nut", "ejaculate", "cum"],    
     "ownerid":"270375857384587264"
 }

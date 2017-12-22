@@ -1,15 +1,12 @@
 {
   "name": "sunset-lite-bot",
-  "version": "2.0.2",
-  "description": "Lightweight version of Sunset Lite made just for the fun stuff",
+  "version": "2.0.1",
+  "description": "Lightweight version of Sunset made just for the fun stuff",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/The-Hacker894/Sunset-Lite.git"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start index.js --name Sunset-LITE"
+     },
   "dependencies": {
     "boxen": "^1.3.0",
     "cheerio": "^1.0.0-rc.2",
@@ -45,22 +42,23 @@
     "youtube-info": "^1.1.2",
     "ytdl-core": "^0.15.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Hacker894/Sunset.git"
+  },
   "keywords": [
     "Sunset",
-    "Sunset-LITE",
     "Sunset-BETA",
-    "Sunset-Bot",
-    "Sun",
-    "set",
     "Discord.JS",
-    "NodeJS",
-    "Discord-Bot",
+    "Discord",
+    "DiscordBot",
+    "Sunset-Lite",
     "DiscordAPI"
   ],
   "author": "TheHacker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/The-Hacker894/Sunset-Lite/issues"
+    "url": "https://github.com/The-Hacker894/Sunset/issues"
   },
-  "homepage": "https://github.com/The-Hacker894/Sunset-Lite#readme"
+  "homepage": "https://github.com/The-Hacker894/Sunset#readme"
 }

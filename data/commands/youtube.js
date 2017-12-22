@@ -22,7 +22,7 @@ module.exports.run = (client, message, args, data, game, announcement) => {
 
     var youtubegoogleData = $('.r').first().find('a').first().attr('href');
     youtubegoogleData = querystring.parse(youtubegoogleData.replace('/url?', ''));
-    var nsfwterms = ['porn', 'hentai', 'pron', 'ass', 'fuck', 'piss', 'penis', 'vagina']    
+    var nsfwterms = data.nsfwterms
     var ytcheck = youtubegoogleData.q
       if(message.channel.nsfw) {
         message.channel.send('Here\'s what I found for \n*'  + ytsimplegooglesearch + '*\n' + youtubegoogleData.q)

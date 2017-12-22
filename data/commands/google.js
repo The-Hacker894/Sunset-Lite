@@ -21,7 +21,7 @@ return snekfetch.get(searchUrl).then((result) => {
   var googleData = $('.r').first().find('a').first().attr('href');
   googleData = querystring.parse(googleData.replace('/url?', ''));
   var checkGoogleData = googleData.q
-  var nsfwterms = ['porn', 'hentai', 'pron', 'ass', 'fuck', 'piss', 'penis', 'vagina']
+  var nsfwterms = data.nsfwterms
   if(message.channel.nsfw){
     message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
     }else{

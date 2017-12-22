@@ -9,23 +9,6 @@ module.exports.run = (client, message, args, data, game, announcement) => {
 
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('```' + boxen('MANAGE_MESSAGES permission required', {padding: 1}) +'```')
   if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send('```' + boxen('MANAGE_MESSAGES permission required', {padding: 1}) +'```')
-
-  var lengthtoosmall = new Discord.RichEmbed()
-    .setColor(data.embedcolor)
-    .setDescription('You must provide a number of message to purge; 2 - 200')
-    .addField(data.prefix + 'purge <amount>','<amount> = Messages to purge')
-    // removed 
-
-  var lengthtoobig = new Discord.RichEmbed()
-    .setColor(data.embedcolor)
-    .setDescription('The amount of messages to purge cannot be greater than 200')
-    .addField(data.prefix + 'purge <amount>','<amount> = Messages to purge (cannot be greater than 200)')
-    // removed 
-
-  var purgetoosmall = new Discord.RichEmbed()
-    .setColor(data.embedcolor)
-    .setDescription('The amount of messages to purge can be as small as 2 but larger than 200')
-    .addField(data.prefix + 'purge <amount>','<amount> = Messages to purge (2 - 200)')
     // removed 
 
 var purgearg = message.content.split(' ').slice(1).join(' ')

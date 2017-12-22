@@ -9,11 +9,12 @@ module.exports.run = (client, message, args, data, announcement) => {
   var helpembed = new Discord.RichEmbed()
   .setColor(data.embedcolor)
     .setTitle('Commands')
-    .addField('**Info**', '`help` `info` `avatar` `profile` `serverinfo` `membercount` `invite` `settings` `uptime` `usage`')
-    .addField('**Moderation**', '`ban` `kick` `unban` `purge` `mkchannel` `mkvoicechannel` `channelsettings`')
-    .addField('**Entertainment**', '`cleverbot` `2ball` `8ball` `cowsay` `cowthink` `dictionary` `emojify` `figlet` `fliptext` `google` `reverse` `roll` `rps` `say` `timer` `urban` `vote` `youtube` `randomcolor`')
+    .addField('**Info**', '`help` `info` `avatar` `profile` `serverinfo` `membercount` `invite` `uptime` `usage`')
+    .addField('**Moderation**', '`ban` `kick` `unban` `purge` `mkchannel` `channelsettings`')
+    .addField('**Entertainment**', '`cleverbot` `2ball` `8ball` `cowsay` `cowthink` `dictionary` `emojify` `figlet` `fliptext` `google` `reverse` `roll` `doubleroll` `rps` `say` `timer` `urban` `vote` `youtube` `randomcolor`')
+    .addField('**File Generation**', '`qrcode` `lastqr` `createtxt` `lasttxt` `txtmp3` `lastmp3`')
     .addField('**Other**', '`announcement`')
-    .addField('**Owner Only**', '`flush`')
+    .addField('**Owner Only**', '`flush` `settings`')
 message.channel.send({embed: helpembed})
 }
 module.exports.help = {

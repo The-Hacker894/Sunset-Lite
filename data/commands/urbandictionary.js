@@ -8,7 +8,7 @@ module.exports.run = (client, message, args, data, game, announcement) => {
   } 
 const urbandictsearch = message.content.split(' ').slice(1).join(' ')
 webdict('urbandictionary', urbandictsearch).then(resp => {
-  var nsfwterms = ['porn', 'hentai', 'pron', 'ass', 'fuck', 'piss', 'penis', 'vagina']
+  var nsfwterms = data.nsfwterms
   var defcheck = resp.definition
   message.channel.startTyping()
     if(!resp.definition) return message.channel.send('```' + boxen('No Urban Dictionary Entry for ' + urbandictsearch, {padding: 1}) +'```')
