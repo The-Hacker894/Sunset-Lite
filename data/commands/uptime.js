@@ -9,7 +9,7 @@ module.exports.run = (client, message, args, data, game, announcement) => {
   } 
   var uptimeembed = new Discord.RichEmbed()
   .setColor(data.embedcolor)
-  .setTitle(data.name + ' Uptime')
+  .setTitle(client.user.username + ' Uptime')
   .setDescription('Uptime: ' + prettyMs(client.uptime, {verbose: true}))
   message.channel.send({embed: uptimeembed})
 }

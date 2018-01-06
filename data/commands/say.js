@@ -9,6 +9,8 @@ module.exports.run = (client, message, args, data, game, announcement) => {
 
 const message2say = message.content.split(' ').slice(1).join(' ')
 if(message2say.length < 1) return message.channel.send('```' + boxen('Please provide something to say', {padding: 1}) +'```').catch(console.error);
+if(message2say.includes('@')) return;
+if(message2say.includes('<')) return;
     message.channel.send(message2say).catch(console.error);
     message.delete()
 }

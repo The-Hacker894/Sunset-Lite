@@ -6,13 +6,13 @@ module.exports.run = (client, message, args, data) => {
     var option = message.content.split(setting).slice(1).join(' ')
     if(!setting) {
         if(!message.channel.topic) {
-                return message.channel.send('```' + boxen('**Name:** ' + message.channel.name + '\n**Topic:** *No Topic Set* \n**Position:** ' + message.channel.position, {padding: 1}) + '```') 
+                return message.channel.send('```' + boxen('Name: ' + message.channel.name + '\n**Topic: No Topic Set \nPosition: ' + message.channel.position + '\nType: ' + message.channel.type + '\nNSFW: ' + message.channel.nsfw, {padding: 1}) + '```') 
         }
         if(message.channel.topic === 'null') {
-                return message.channel.send('```' + boxen('**Name:** ' + message.channel.name + '\n**Topic:** *No Topic Set* \n**Position:** ' + message.channel.position, {padding: 1}) + '```')
+                return message.channel.send('```' + boxen('Name: ' + message.channel.name + '\nTopic: No Topic Set \nPosition: ' + message.channel.position + '\nType: ' + message.channel.type + '\nNSFW: ' + message.channel.nsfw, {padding: 1}) + '```')
         }
         if(message.channel.topic) {
-            return message.channel.send('```' + boxen('**Name:** ' + message.channel.name + '\n**Topic:** ' + message.channel.topic + ' \n**Position:** ' + message.channel.position, {padding: 1}) + '```')
+            return message.channel.send('```' + boxen('**Name: ' + message.channel.name + '\nTopic: ' + message.channel.topic + ' \nPosition: ' + message.channel.position + '\nType: ' + message.channel.type + '\nNSFW: ' + message.channel.nsfw, {padding: 1}) + '```')
         }
     }
     if(setting.includes('name')) {

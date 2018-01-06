@@ -12,7 +12,7 @@ module.exports.run = (client, message, args, data, announcement) => {
     .addField('**Info**', '`help` `info` `avatar` `profile` `serverinfo` `membercount` `invite` `uptime` `usage`')
     .addField('**Moderation**', '`ban` `kick` `unban` `purge` `mkchannel` `channelsettings`')
     .addField('**Entertainment**', '`cleverbot` `2ball` `8ball` `cowsay` `cowthink` `dictionary` `emojify` `figlet` `fliptext` `google` `reverse` `roll` `doubleroll` `rps` `say` `timer` `urban` `vote` `youtube` `randomcolor`')
-    .addField('**File Generation**', '`qrcode` `lastqr` `createtxt` `lasttxt` `txtmp3` `lastmp3`')
+    .addField('**File Generation**', '`url` `base64` `qrcode` `lastqr` `createtxt` `lasttxt`')
     .addField('**Other**', '`announcement`')
     .addField('**Owner Only**', '`flush` `settings`')
 message.channel.send({embed: helpembed})

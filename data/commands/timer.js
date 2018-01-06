@@ -19,7 +19,7 @@ module.exports.run = (client, message, args, data, game, announcement) => {
             if(!message.content.includes('hour')) return message.channel.send(`***Clarification needed*** \n **Suggestions** \n ${time} seconds \n ${time} minutes \n ${time} hours`)
     }
     }
-    message.channel.send('**Timer for ' + time + ' started**')
+    message.channel.send('**Timer for ' + time + ' started**\nI\'ll DM you when your timer finishes.')
     
     setTimeout(Timer, ms(time));
     function Timer() {
