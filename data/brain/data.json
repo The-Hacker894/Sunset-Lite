@@ -1,5 +1,5 @@
 {
-    "newversion": "2.0.2",
+    "newversion": "2.1",
     "token": "",
     "description": "Lightweight version of Sunset",
     "dbltoken": "",
@@ -11,5 +11,7 @@
     "embedcolor":"#FFA500",
     "lock":"false",
     "nsfwterms": ["porn", "hentai", "pron", "ass", "fuck", "piss", "penis", "vagina", "dick", "nude", "nut", "ejaculate", "cum"],    
-    "ownerid":"270375857384587264"
+    "ownerid":"270375857384587264",
+    "googlAPIKey":"",
+    "translateKey":""
 }
