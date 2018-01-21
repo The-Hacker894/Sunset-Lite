@@ -1,7 +1,8 @@
 {
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start index.js --name Sunset"
+    "start": "pm2 start index.js --name Sunset",
+    "installmod": "npm install --save discord.js cheerio ffmpeg ffmpeg-binaries fs moment moment-timezone opusscript querystring request snekfetch ytdl-core webdict moji-translate figlet flip-text cowsay request-promise-native"
   },
   "author": "MrHacker894",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "color-convert": "^1.9.1",
     "cowsay": "^1.2.1",
     "discord.js": "^11.3.0",
+    "eslint": "^4.12.1",
     "figlet": "^1.2.0",
     "flip-text": "^1.1.0",
     "fs": "0.0.1-security",
@@ -31,8 +33,9 @@
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "reverse-string": "0.0.6",
-    "snekfetch": "^3.6.0",
+    "snekfetch": "^3.6.1",
     "translate": "^1.0.1",
+    "url": "^0.11.0",
     "webdict": "^0.1.0",
     "write": "^1.0.3",
     "ytdl-core": "^0.15.2"
