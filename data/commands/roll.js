@@ -1,21 +1,24 @@
 const RichEmbed = require("discord.js").RichEmbed;
 const Discord = require("discord.js");
-const moment = require("moment")
-var embedfooter = moment().format('h:mm:ss a') + 'EST on ' +  moment().format('MMMM Do YYYY')
-const momentdate = moment().format('MMMM Do YYYY')
-const momentday = moment().format('dddd')
-function rollyodice() {
-  var rand = ['**1**','**2**','**3**','**4**','**5**','**6**']
+const boxen = require('boxen');
+const request = require('request')
+  const opts = ['**1**','**2**','**3**','**4**','**5**','**6**']
 
-return rand[Math.floor(Math.random()*rand.length)];
-}
-module.exports.run = (client, message, args) => {
+module.exports.run = (client, message, args, data) => {
   var commandlock = data.lock
   if(commandlock.includes('true')) {       
     if(message.author.id !== data.ownerid) return message.channel.send('Sorry, but a command lock is in effect. Only the owner can use commands at this time.')   
   } 
+  const modlog = message.guild.channels.find('name', 'mod-log');
+  const announcements = message.guild.channels.find('name', 'announcements')
 
-message.channel.send(':game_die: **|** ' + rollyodice())
+  request('https://www.random.org/integers/?num=1&min=0&max=2&base=10&col=1&format=plain&rnd=new', function (error, response, body) {
+    const botChoice = opts[Number(body)];
+var rollmlembed = `${botChoice}`
+  // removed 
+  var rolled = ':game_die: | ' + botChoice
+message.channel.send('```' + boxen(rolled, {padding: 1}) + '```')
+});
 }
 module.exports.help = {
   name: "roll",

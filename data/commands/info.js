@@ -4,6 +4,7 @@ const RichEmbed = require("discord.js").RichEmbed;
 const Attachment = require("discord.js").Attachment;
 const Discord = require("discord.js");
 const boxen = require("boxen")
+const PythonShell = require('python-shell');
 module.exports.run = (client, message, args, data, game, announcement) => {
   var commandlock = data.lock
   if(commandlock.includes('true')) {       
@@ -14,6 +15,8 @@ client.guilds.map(g => total += g.memberCount)
   pusage.stat(process.pid, function (err, stat) {
     const cpuusage = parseFloat(Math.round(stat.cpu * 100) / 100).toFixed(2)
     const memusage = parseFloat(Math.round(stat.memory / 1000000 * 100) / 100).toFixed(2)
+
+    PythonShell.run('./data/scripts/temp.py',/* options,*/ function (err, results) { 
 var infosembed = new Discord.RichEmbed()
     .setColor(data.embedcolor)
     .setTitle('Sunset Lite Info')
@@ -26,6 +29,7 @@ var infosembed = new Discord.RichEmbed()
     .addField('Uptime', prettyMs(client.uptime, {verbose: true}), true)
     .addField('CPU Usage', cpuusage + '%', true)
     .addField('Memory Usage', memusage + 'MB', true)
+    .addField('Server Temperature', results ,true)
     .addField('Total Members', total, true)
     .addField('Invite', '[Sunset Lite Invite](https://discordapp.com/oauth2/authorize?client_id=' + client.user.id + '&scope=bot&permissions=' + data.bot_permissions + ')', true)
     .addField('Full Version', '[Sunset Invite](https://discordapp.com/oauth2/authorize?client_id=371097223942897665&scope=bot&permissions=' + data.bot_permissions +')', true)
@@ -41,6 +45,7 @@ var infosembed = new Discord.RichEmbed()
     message.channel.send({embed: infosembed}).then( () => {
       pusage.unmonitor(process.pid)
     })
+  });    
 });
 }
 module.exports.help = {

@@ -8,12 +8,10 @@ module.exports.run = (client, message, args, data, game, announcement) => {
     var userurl = args[2]
     var optionaloptions = ['shorten', 'expand']
     const modlog = message.guild.channels.find('name', 'mod-log');
+
     
-    var longurlerror = new Discord.RichEmbed()
-        .setColor(data.embedcolor)
-        .setTitle('Error')
-        .setDescription('You must provide a `goo.gl` URL to expand')
-        if(!option) return message.channel.send({embed: optionerror})
+
+        if(!option) return message.channel.send('```' + boxen('You must specify whether or not you would like to shorten or expand a URL.', {padding: 1}) +'```')
         if(optionaloptions.some(viableoptions => option.includes(viableoptions))) {
 
             if(option === 'shorten') {

@@ -1,14 +1,15 @@
 const RichEmbed = require("discord.js").RichEmbed;
 const Discord = require("discord.js");
-const moment = require("moment")
-const boxen = require("boxen")
+const boxen = require('boxen');
 module.exports.run = (client, message, args, data) => {
   var commandlock = data.lock
   if(commandlock.includes('true')) {       
     if(message.author.id !== data.ownerid) return message.channel.send('Sorry, but a command lock is in effect. Only the owner can use commands at this time.')   
   } 
-      message.channel.send('Pinging...').then(sent => {
-        sent.edit(`Pong! Took ${sent.createdTimestamp - message.createdTimestamp}ms`)
+  const modlog = message.guild.channels.find('name', 'mod-log');
+  const announcements = message.guild.channels.find('name', 'announcements')
+      message.channel.send('```'+ boxen('Pinging...', {padding: 1}) +'```').then(sent => {
+        sent.edit('```' + boxen(`Pong!\n${sent.createdTimestamp - message.createdTimestamp}ms`, {padding: 1}) +'```')
         message.delete()
       })
 }

@@ -5,37 +5,82 @@ const cheerio = require('cheerio')
 const snekfetch = require('snekfetch')
 const querystring = require('querystring')
 const boxen = require("boxen")
+const google = require('google')
 module.exports.run = (client, message, args, data, game, announcement) => {
+  message.channel.startTyping()
+
   var commandlock = data.lock
   if(commandlock.includes('true')) {       
     if(message.author.id !== data.ownerid) return message.channel.send('Sorry, but a command lock is in effect. Only the owner can use commands at this time.')   
   } 
+  var searchUrl = `https://www.google.com/search?q=${encodeURIComponent(message.content.split(' ').slice(1).join(' '))}`;
 
-let googlesearch = message.content.split(' ').slice(1).join(' ')
-let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(message.content.split(' ').slice(1).join(' '))}`;
-if(googlesearch.length < 1)  return message.channel.send('```' + boxen('You must provide something to search for', {padding: 1}) + '```')
-message.channel.startTyping()
+  return snekfetch.get(searchUrl).then((result) => {
+    var $ = cheerio.load(result.text);
+    var googleData = $('.r').first().find('a').first().attr('href');
+    googleData = querystring.parse(googleData.replace('/url?', ''));
+    var checkOtherGoogleData = googleData.q
 
-return snekfetch.get(searchUrl).then((result) => {
-  var $ = cheerio.load(result.text);
-  var googleData = $('.r').first().find('a').first().attr('href');
-  googleData = querystring.parse(googleData.replace('/url?', ''));
-  var checkGoogleData = googleData.q
-  var nsfwterms = data.nsfwterms
-  if(message.channel.nsfw){
-    message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
-    }else{
-      if(nsfwterms.some(terms => checkGoogleData.includes(terms))) {
-        message.channel.send('```' + boxen('NSFW term used in non NSFW channel', {padding: 1}))
-      } else {
-        message.channel.send('**Here\'s what I found for**\n' + googlesearch + '\n\n ' + googleData.q).catch(console.error);
-      }
-    }
-    message.channel.stopTyping()
-});
+  const modlog = message.guild.channels.find('name', 'mod-log');
+ var googlesearch = message.content.split(' ').slice(1).join(' ')
+google.resultsPerPage = 1
+var nextCounter = 0
+ 
+google(googlesearch, function (err, res){
+  if (err) console.error(err)
+ 
+  for (var i = 0; i < res.links.length; ++i) {
+    var link = res.links[i];
+    const nsfwterms = data.nsfwterms
+    var checkGoogleData = link.description
+    var googlesearchresult = `Here\'s what I found for ${googlesearch}\n` +
+                              `Title: ${link.title}\n` +
+                              `Link: ${link.href}\n` +
+                              `Description: ${link.description}\n${googleData.q}`
+      var nsfwerror = `NSFW term used in non NSFW channel`
+        
+      if(message.channel.nsfw){
+        message.channel.send('```' + boxen(googlesearchresult, {padding: 1}) + '```').then(message => {
+          message.channel.stopTyping()
+        })
+          .catch(console.error);
+        return;
+        }else{
+          if(nsfwterms.some(terms => checkGoogleData.includes(terms))) {
+            message.channel.send('```' +  boxen(nsfwerror, {padding: 1}) + '```').then(message => {
+              message.channel.stopTyping()
+            })
+              .catch(console.error);
+            return;
+          } else {
+            if(nsfwterms.some(terms => checkOtherGoogleData.includes(terms))) {
+              message.channel.send('```' + boxen(nsfwerror, {padding: 1}) + '```').then(message => {
+                message.channel.stopTyping()
+              })
+                .catch(console.error);
+              return;
+            } else {
+              message.channel.send('```' + boxen(googlesearchresult, {padding: 1}) + '```').then(message => {
+                message.channel.stopTyping()
+              })
+                .catch(console.error);
+              return;
+            }
+            message.channel.send('```' + boxen(googlesearchresult, {padding: 1}) + '```').then(message => {
+              message.channel.stopTyping()
+            })
+              .catch(console.error);
+            return;
+          } 
+        }
+    
+  }
+ 
+})
+  });
 }
 module.exports.help = {
   name: "google",
-  info: "Search Google",
-  usage: "google <search_term>"
+  usage: "google <searchTerm>",
+  info: "Search Google"
 }

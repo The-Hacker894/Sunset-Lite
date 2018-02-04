@@ -12,9 +12,11 @@ module.exports.run = (client, message, args, data, game, announcement) => {
     if(clevermessage.length < 1) return message.channel.send("Please provide a message.")
     clever.setNick("Sunset Lite")
     clever.create(function (err, session) {
+        clever.ask(clevermessage, function (err, response) {
         message.channel.startTyping()
         message.channel.send('```' + boxen(message.author.username + ', ' + response) +'```')
-        message.channel.stopTyping()
+        message.channel.stopTyping()    
+        });
     })
 }
 module.exports.help = {

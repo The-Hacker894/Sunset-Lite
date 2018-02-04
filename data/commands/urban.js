@@ -1,6 +1,7 @@
 const RichEmbed = require("discord.js").RichEmbed;
 const Discord = require("discord.js");
 const boxen = require("boxen")
+const webdict = require("webdict")
 module.exports.run = (client, message, args, data, game, announcement) => {
   var commandlock = data.lock
   if(commandlock.includes('true')) {       
@@ -19,7 +20,11 @@ webdict('urbandictionary', urbandictsearch).then(resp => {
       if(nsfwterms.some(terms => defcheck.includes(terms))) {
         message.channel.send('```' + boxen('NSFW term used in non NSFW channel', {padding: 1}))
       } else {
-        message.channel.send('```' + boxen('Word: ' + urbandictsearch + '\nDefinition: ' + resp.definition + '\nType: ' + resp.type + '\nSource: ' + resp.source, {padding: 1}) + '```')              
+        if(nsfwterms.some(terms => urbandictsearch.includes(terms))) {
+          message.channel.send('```' + boxen('NSFW term used in non NSFW channel', {padding: 1}))
+        } else {
+        message.channel.send('```' + boxen('Word: ' + urbandictsearch + '\nDefinition: ' + resp.definition + '\nType: ' + resp.type + '\nSource: ' + resp.source, {padding: 1}) + '```')   
+        }           
       }        
     }
           message.channel.stopTyping()
