@@ -19,37 +19,12 @@ const botjoinembed = new Discord.RichEmbed()
   .addField('**Here is the current Announcement**', '```' + announcement.announce + '```')
   .addField('**Current Version**', '```' + data.newversion + '```')
 
-var dataPath = './data/'
-var base64filesPath = './data/base64files/'
-var binaryfilesPath = './data/binaryfiles/'
-var qrcodePath = './data/qrcode/'
-var scriptsPath = './data/scripts/'
-var textfilesPath = './data/textfiles/'
 
-if (!fs.existsSync(dataPath)) {
- console.log('Could not find the ./data/ folder')
- process.exit(0)
-}
-if (!fs.existsSync(base64filesPath)) {
-console.log('Could not find the ./data/base64files/ folder')
-process.exit(0)
-}
-if (!fs.existsSync(binaryfilesPath)) {
-console.log('Could not find the ./data/binaryfiles/ folder')
-process.exit(0)
-}
-if (!fs.existsSync(qrcodePath)) {
-console.log('Could not find the ./data/qrcode/ folder')
-process.exit(0)
-}
-if (!fs.existsSync(scriptsPath)) {
-console.log('Could not find the ./data/scripts/ folder')
-process.exit(0)
-}
-if (!fs.existsSync(textfilesPath)) {
-console.log('Could not find the ./data/textfiles/ folder')
-process.exit(0)
-}
+
+  client.on('disconnect', event => {
+    console.log('[DISCONNECTED] Attempting to reconnecting')
+    client.login(token)
+  })
 
 client.on("message", (message) => {
 
@@ -91,6 +66,12 @@ client.on("message", (message) => {
     if (!fs.existsSync(`./data/serverdata/${guild.id}/warns`)) {
       fs.mkdirSync(`./data/serverdata/${guild.id}/warns`);
       }
+      if (!fs.existsSync(`./data/serverdata/timer/`)) {
+        fs.mkdirSync(`./data/serverdata/timer/`);
+        }
+      if (!fs.existsSync(`./data/serverdata/timer/${guild.id}/`)) {
+        fs.mkdirSync(`./data/serverdata/timer/${guild.id}/`);
+        }
     })
     client.commands = new Discord.Collection();
   fs.readdir("./data/commands", (err, files) => {
@@ -111,6 +92,8 @@ client.on("message", (message) => {
         console.log('[Logged in] ' + client.user.tag)
     console.log('[Time] ' + moment().format('MMMM Do YYYY, h:mm:ss a'))
     console.log('[Announcement] ' + announcement.announce)
+    console.log('[Game]', game.game)
+    console.log('[Activity]', game.activity)
         pusage.unmonitor(process.pid)
         requestpn.post({
           uri: `https://discordbots.org/api/bots/${client.user.id}/stats`,
@@ -122,6 +105,26 @@ client.on("message", (message) => {
               server_count: client.guilds.size,
           },
       });
+      if(game.activity.includes('PLAYING')) {
+        client.user.setActivity(game.game + ' | ' + data.prefix + 'help', { type: 'PLAYING' })
+        return;
+    }
+    if(game.activity.includes('STREAMING')) {
+        client.user.setActivity(game.game + ' | ' + data.prefix + 'help', { type: 'STREAMING' })
+        return;
+    }
+    if(game.activity.includes('LISTENING')) {
+        client.user.setActivity(game.game + ' | ' + data.prefix + 'help', { type: 'LISTENING' })
+        return;
+    }
+    if(game.activity.includes('WATCHING')) {
+        client.user.setActivity(game.game + ' | ' + data.prefix + 'help', { type: 'WATCHING' })
+        return;
+    }
+    if (fs.existsSync(`./data/serverdata/timer/`)) {
+      fs.unlinkSync(`./data/serverdata/timer/`);
+      }
+   
       });
       client.on("guildDelete", guild => {
         console.log('Removed from 1 server | ' + guild)
@@ -164,6 +167,12 @@ client.on("message", (message) => {
             if (!fs.existsSync(`./data/serverdata/${guild.id}/text`)) {
             fs.mkdirSync(`./data/serverdata/${guild.id}/text`);
             }
+            if (!fs.existsSync(`./data/serverdata/timer/`)) {
+              fs.mkdirSync(`./data/serverdata/timer/`);
+              }
+            if (!fs.existsSync(`./data/serverdata/timer/${guild.id}/`)) {
+              fs.mkdirSync(`./data/serverdata/timer/${guild.id}/`);
+              }
 
       });
 
