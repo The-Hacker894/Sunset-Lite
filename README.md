@@ -23,7 +23,7 @@ Lightweight version of Sunset
   <img src="https://discordbots.org/api/widget/owner/391606660214292482.svg" alt="Discord Bots" />
 </a>
 
-[Sunset Lite Invite](http://hacker-hub.com/sunset-lite/invite)
-[Sunset Invite](http://hacker-hub.com/sunset/invite)
+[Sunset Lite Invite](http://hacker-hub.github.io/sunset-lite/invite)
+[Sunset Invite](http://hacker-hub.github.io/sunset/invite)
 
-[Sunset Lite Website](http://hacker-hub.com/sunset-lite)
+[Sunset Lite Website](http://hacker-hub.github.io/sunset/#lite)
